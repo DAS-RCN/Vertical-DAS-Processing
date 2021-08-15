@@ -15,9 +15,12 @@ def pred_vertical_tt(velocity, dz, angles):
     Output:
         2D numpy array with travel-times at each array point as a function of incidence angle.
     """
-
-    if np.amax(np.abs(angles)) > math.pi:
-        angles = angles / 180.0 * math.pi
+    if angles.size == 1:
+        if angles > math.pi:
+            angles = angles / 180.0 * math.pi
+    else:
+        if np.amax(np.abs(angles)) > math.pi:
+            angles = angles / 180.0 * math.pi
 
     nz = velocity.size
     nang = angles.size
