@@ -26,7 +26,7 @@ def calc_coherence(data, semb_win, mode='semb'):
     sum_of_sqr = np.sum(np.power(data, 2.0), axis=0)
 
     for w in range(half_win, nt-half_win):
-        if sum_of_sqr[w] == 0:
+        if sum_of_sqr[w] == 0 or n_live_ch[w]==0:
             semblance_res[w] = 0
         else:
             semblance_res[w] = np.divide(np.sum(np.power(stack_res[w-half_win:w+half_win+1], 2.0)),
